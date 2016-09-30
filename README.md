@@ -8,6 +8,10 @@ Instal composer[http://getcomposer.com] and the just run:
 ```
 composer install
 ```
+Or it is installed
+```
+composer update
+```
 tmpt
 ====
 

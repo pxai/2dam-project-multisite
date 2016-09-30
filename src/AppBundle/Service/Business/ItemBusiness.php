@@ -1,9 +1,9 @@
 <?php
 
-namespace Pello\InventoryBundle\Service\Business;
+namespace AppBundle\Service\Business;
 
-use Pello\InventoryBundle\Entity\Item;
-use Pello\InventoryBundle\Service\DAO\ItemDAO;
+use AppBundle\Entity\Item;
+use AppBundle\Service\DAO\ItemDAO;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

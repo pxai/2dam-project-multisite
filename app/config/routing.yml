@@ -4,5 +4,5 @@ api:
     prefix:   /
 
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@ApiBundle/Controller/"
     type:     annotation

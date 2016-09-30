@@ -3,7 +3,8 @@
 namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -20,7 +21,7 @@ class ItemController extends Controller
     public function indexAction()
     {
         $items = $this->get("pello_inventory.bo.item")->selectAll();
-        return $this->render('AppBundle:Item:index.html.twig',array("items"=>$items));
+        return $this->render('ApiBundle:Item:index.html.twig',array("items"=>$items));
     }
 
     /**
@@ -30,7 +31,7 @@ class ItemController extends Controller
     public function itemDetailAction($id)
     {
         $item = $this->get("pello_inventory.bo.item")->selectById($id);
-        return $this->render('AppBundle:Item:detail.html.twig',array("item"=>$item));
+        return $this->render('ApiBundle:Item:detail.html.twig',array("item"=>$item));
     }
     
      /**
@@ -40,7 +41,7 @@ class ItemController extends Controller
     public function itemNewAction()
     {
         $form = $this->createForm(ItemType::class);
-        return $this->render('AppBundle:Item:new.html.twig', array('form'=> $form->createView()));
+        return $this->render('ApiBundle:Item:new.html.twig', array('form'=> $form->createView()));
     }
 
      /**
@@ -56,9 +57,9 @@ class ItemController extends Controller
         if ($form->isValid()) {
             $item = $form->getData();
             $this->get("pello_inventory.bo.item")->create($item);
-            $response =  $this->render('AppBundle:Item:newSave.html.twig', array('item' => $item));
+            $response =  $this->render('ApiBundle:Item:newSave.html.twig', array('item' => $item));
         } else {
-            $response = $this->render('AppBundle:Item:new.html.twig', array('form'=> $form->createView()));
+            $response = $this->render('ApiBundle:Item:new.html.twig', array('form'=> $form->createView()));
         }
         return $response;
     }
@@ -73,7 +74,7 @@ class ItemController extends Controller
     {
        $item = $this->get("pello_inventory.bo.item")->selectById($id);
        $form = $this->createForm(ItemType::class, $item);
-       return $this->render('AppBundle:Item:update.html.twig',array("form"=> $form->createView(),'msg'=> 'yes'));
+       return $this->render('ApiBundle:Item:update.html.twig',array("form"=> $form->createView(),'msg'=> 'yes'));
     }
 
     
@@ -92,11 +93,11 @@ class ItemController extends Controller
             $item = $form->getData();
 
             $this->get("pello_inventory.bo.item")->update($item);
-            //$response =  $this->forward('AppBundle:Item:detail.html.twig', array('item' => $item));
+            //$response =  $this->forward('ApiBundle:Item:detail.html.twig', array('item' => $item));
             return $this->indexAction();
         } else {
 
-            $response = $this->render('AppBundle:Item:update.html.twig', array('form'=> $form->createView()));
+            $response = $this->render('ApiBundle:Item:update.html.twig', array('form'=> $form->createView()));
         }
         return $response;   
         
@@ -109,7 +110,7 @@ class ItemController extends Controller
     public function itemDeleteAction($id)
     {
         $item = $this->get("pello_inventory.bo.item")->selectById($id);
-        return $this->render('AppBundle:Item:delete.html.twig',array("item"=>$item));
+        return $this->render('ApiBundle:Item:delete.html.twig',array("item"=>$item));
     }
     
      /**

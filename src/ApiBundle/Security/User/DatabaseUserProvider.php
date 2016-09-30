@@ -41,6 +41,6 @@ class DatabaseUserProvider implements UserProviderInterface
 
     public function supportsClass($class)
     {
-        return $class === 'AppBundle\Security\User\WebserviceUser';
+        return $class === 'ApiBundle\Security\User\WebserviceUser';
     }
 }

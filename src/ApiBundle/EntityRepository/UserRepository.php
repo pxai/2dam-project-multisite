@@ -5,7 +5,7 @@ namespace ApiBundle\EntityRepository;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
-use AppBundle\Entity\User;
+use ApiBundle\Entity\User;
 
 class UserRepository extends EntityRepository implements UserLoaderInterface
 {

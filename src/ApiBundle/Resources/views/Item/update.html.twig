@@ -1,0 +1,9 @@
+{% extends "ApiBundle:Default:layout.html.twig" %}
+{% block title %}Inventory Sample::Detail{% endblock %}
+{% block body %}
+
+<h3>Update item</h3>
+<form method="post" action="{{ path('item_update_save') }}">
+    {{ form_widget(form) }}
+</form>
+{% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service\DAO;
+namespace ApiBundle\Service\DAO;
 
 /**
  * ItemDAO

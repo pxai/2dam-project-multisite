@@ -1,0 +1,20 @@
+{% extends "ApiBundle:Default:layout.html.twig" %}
+{% block title %}Inventory Sample::Detail{% endblock %}
+{% block body %}
+<h2>{% trans %}Item detail{% endtrans %} <span class="glyphicon glyphicon-heart"></span></h2>
+
+<div class="table-responsive">
+   <a href="{{ path('item_index') }}">All</a> | 
+   <a href="{{ path('item_new') }}">New</a> | 
+  <table class="table .table-condensed">
+            {# % include "ApiBundle:Center:center.html.twig" % #}
+            <div class="item">{{ item.id }}: {{ item.name }}
+                <a href="{{ path('item_detail', {'id': item.id }) }}">Detail</a> | 
+                <a href="{{ path('item_update', {'id': item.id }) }}">Update</a> | 
+                <a href="{{ path('item_delete', {'id': item.id }) }}">Delete</a> | 
+            </div>
+    </div>
+  </table>
+</div>
+
+{% endblock %}

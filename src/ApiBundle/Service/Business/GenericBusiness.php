@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Service\Business;
+namespace ApiBundle\Service\Business;
 
-use AppBundle\Entity\Entity;
-use AppBundle\Service\DAO\GenericDAO;
+use ApiBundle\Entity\Entity;
+use ApiBundle\Service\DAO\GenericDAO;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

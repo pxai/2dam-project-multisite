@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Service\Business;
+namespace ApiBundle\Service\Business;
 
-use AppBundle\Entity\Item;
-use AppBundle\Service\DAO\ItemDAO;
+use ApiBundle\Entity\Item;
+use ApiBundle\Service\DAO\ItemDAO;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

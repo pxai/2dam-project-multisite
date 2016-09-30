@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

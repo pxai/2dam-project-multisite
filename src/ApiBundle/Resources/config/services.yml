@@ -20,3 +20,19 @@ services:
     api_inventory.bo.class:
          class: ApiBundle\Service\Business\ClassBusiness
          arguments: ['@api_inventory.dao.class']
+
+    api_inventory.dao.meetup:
+        class: ApiBundle\Service\DAO\MeetupDAO
+        arguments: ['ApiBundle:Meetup', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.meetup:
+        class: ApiBundle\Service\Business\MeetupBusiness
+        arguments: ['@api_inventory.dao.meetup']
+
+    api_inventory.dao.event:
+         class: ApiBundle\Service\DAO\EventDAO
+         arguments: ['ApiBundle:Event', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.event:
+         class: ApiBundle\Service\Business\EventBusiness
+         arguments: ['@api_inventory.dao.event']

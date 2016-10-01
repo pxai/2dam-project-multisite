@@ -20,7 +20,7 @@ class ItemController extends Controller
      */
     public function indexAction()
     {
-        $items = $this->get("pello_inventory.bo.item")->selectAll();
+        $items = $this->get("api_inventory.bo.item")->selectAll();
         return $this->render('ApiBundle:Item:index.html.twig',array("items"=>$items));
     }
 
@@ -30,7 +30,7 @@ class ItemController extends Controller
      */
     public function itemDetailAction($id)
     {
-        $item = $this->get("pello_inventory.bo.item")->selectById($id);
+        $item = $this->get("api_inventory.bo.item")->selectById($id);
         return $this->render('ApiBundle:Item:detail.html.twig',array("item"=>$item));
     }
     
@@ -56,7 +56,7 @@ class ItemController extends Controller
             
         if ($form->isValid()) {
             $item = $form->getData();
-            $this->get("pello_inventory.bo.item")->create($item);
+            $this->get("api_inventory.bo.item")->create($item);
             $response =  $this->render('ApiBundle:Item:newSave.html.twig', array('item' => $item));
         } else {
             $response = $this->render('ApiBundle:Item:new.html.twig', array('form'=> $form->createView()));
@@ -72,7 +72,7 @@ class ItemController extends Controller
      */
     public function itemUpdateAction($id)
     {
-       $item = $this->get("pello_inventory.bo.item")->selectById($id);
+       $item = $this->get("api_inventory.bo.item")->selectById($id);
        $form = $this->createForm(ItemType::class, $item);
        return $this->render('ApiBundle:Item:update.html.twig',array("form"=> $form->createView(),'msg'=> 'yes'));
     }
@@ -92,7 +92,7 @@ class ItemController extends Controller
 
             $item = $form->getData();
 
-            $this->get("pello_inventory.bo.item")->update($item);
+            $this->get("api_inventory.bo.item")->update($item);
             //$response =  $this->forward('ApiBundle:Item:detail.html.twig', array('item' => $item));
             return $this->indexAction();
         } else {
@@ -109,7 +109,7 @@ class ItemController extends Controller
      */
     public function itemDeleteAction($id)
     {
-        $item = $this->get("pello_inventory.bo.item")->selectById($id);
+        $item = $this->get("api_inventory.bo.item")->selectById($id);
         return $this->render('ApiBundle:Item:delete.html.twig',array("item"=>$item));
     }
     
@@ -119,7 +119,7 @@ class ItemController extends Controller
      */
     public function itemDeleteSaveAction(Item $item)
     {
-        $this->get("pello_inventory.bo.item")->remove($item);
+        $this->get("api_inventory.bo.item")->remove($item);
         return $this->indexAction();
     }
     

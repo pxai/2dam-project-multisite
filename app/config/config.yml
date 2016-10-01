@@ -67,3 +67,22 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+# FOS Rest config
+#    disable_csrf_role: ROLE_API
+fos_rest:
+    disable_csrf_role:    IS_AUTHENTICATED_ANONYMOUSLY
+    param_fetcher_listener: true
+    format_listener:
+        rules:
+            fallback_format: json
+            prefer_extension: false
+            priorities: [json, json, jsonp]
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+            jsonp: true
+            xml: false
+            rss: false
+            html: true
+        failed_validation: HTTP_BAD_REQUEST

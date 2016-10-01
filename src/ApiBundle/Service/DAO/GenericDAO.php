@@ -5,8 +5,7 @@ namespace ApiBundle\Service\DAO;
 use Doctrine\ORM\EntityManager;
 
 /**
- *
- * @author Pello Altadill
+ * GenericDAO
  */
 abstract class GenericDAO {
 
@@ -39,7 +38,7 @@ abstract class GenericDAO {
      * select all items
      */
     public function selectAll() {
-        return $this->em->getRepository($this->entityType)->findItems();
+        return $this->em->getRepository($this->entityType)->findAll();
     }
 
     /**

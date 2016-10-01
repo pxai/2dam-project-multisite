@@ -1,5 +1,4 @@
 <?php
-// src/Pello/InventoryBundle/EntityRepository/ItemRepository.php
 
 namespace ApiBundle\EntityRepository;
 use Doctrine\ORM\EntityRepository;

@@ -1,14 +1,22 @@
 services:
-#    pello_inventory.example:
+#    api_inventory.example:
 #        class: ApiBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
     inventory.security.sha1_password_encoder:
         class: ApiBundle\Security\Encoder\Sha1PasswordEncoder
     
-    pello_inventory.dao.item:
+    api_inventory.dao.item:
          class: ApiBundle\Service\DAO\ItemDAO
          arguments: ['ApiBundle:Item', '@doctrine.orm.entity_manager' ]
 
-    pello_inventory.bo.item:
+    api_inventory.bo.item:
          class: ApiBundle\Service\Business\ItemBusiness
-         arguments: ['@pello_inventory.dao.item']
+         arguments: ['@api_inventory.dao.item']
+
+    api_inventory.dao.class:
+         class: ApiBundle\Service\DAO\ClassDAO
+         arguments: ['ApiBundle:AClass', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.class:
+         class: ApiBundle\Service\Business\ClassBusiness
+         arguments: ['@api_inventory.dao.class']

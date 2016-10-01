@@ -14,10 +14,10 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-use ApiBundle\Form\Type\ItemType;
-use ApiBundle\Entity\Item;
+use ApiBundle\Form\Type\ClassType;
+use ApiBundle\Entity\AClass;
 
-class ItemApiController extends Controller
+class ClassApiController extends Controller
 {
 
         private $serializer;
@@ -39,47 +39,47 @@ class ItemApiController extends Controller
     }
 
     /**
-     * @Route("/admin/api/item", name="api_item_index")
+     * @Route("/admin/api/class", name="api_class_index")
      * @Rest\View
      */
     public function indexApiAction()
     {
-        $items = $this->get("api_inventory.bo.item")->selectAll();
-        return $items;
+        $classes = $this->get("api_inventory.bo.class")->selectAll();
+        return $classes;
     }
 
     /**
      *
-     * @Route("/admin/api/item/detail/{id}", name="api_item_detail")
+     * @Route("/admin/api/class/detail/{id}", name="api_class_detail")
      * @Rest\View
      */
-    public function itemDetailAction($id)
+    public function classDetailAction($id)
     {
-        $item = $this->get("api_inventory.bo.item")->selectById($id);
-        return $item;
+        $class = $this->get("api_inventory.bo.class")->selectById($id);
+        return $class;
     }
 
 
 
     /**
     *
-    * @Route("/admin/api/item/create", name="api_item_new_save")
+    * @Route("/admin/api/class/create", name="api_class_new_save")
     * @Method({"POST"})
     */
-   public function itemNewSaveAction(Request $request)
+   public function classNewSaveAction(Request $request)
    {
      $statusCode = 201;
         $this->get('logger')->info($request);
-     $form = $this->createForm(ItemType::class, new Item());
+     $form = $this->createForm(ClassType::AClass, new AClass());
      $form->handleRequest($request);
 
      $this->get('logger')->info('Here we go.');
 
        if ($form->isValid()) {
-           $item = $form->getData();
-           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+           $class = $form->getData();
+           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($class, 'json'));
 
-           $this->get("api_inventory.bo.item")->create($item);
+           $this->get("api_inventory.bo.class")->create($class);
 
 
            $response = new Response();
@@ -89,7 +89,7 @@ class ItemApiController extends Controller
         /*   if (201 === $statusCode) {
                $response->headers->set('Location',
                    $this->generateUrl(
-                       'acme_demo_user_get', array('id' => $item->getId()),
+                       'acme_demo_user_get', array('id' => $class->getId()),
                        true // absolute
                    )
                );
@@ -103,36 +103,36 @@ class ItemApiController extends Controller
 
         /**
         *
-        * @Route("/admin/api/item/delete/{id}", name="api_item_delete")
+        * @Route("/admin/api/class/delete/{id}", name="api_class_delete")
         * @Method({"DELETE"})
         * @Rest\View(statusCode=204)
         */
-       public function itemDeleteAction(Item $item)
+       public function classDeleteAction(AClass $class)
        {
-           $this->get("api_inventory.bo.item")->remove($item);
+           $this->get("api_inventory.bo.class")->remove($class);
        }
 
 
 /**
     *
-    * @Route("/admin/api/item/update", name="api_item_update_save")
+    * @Route("/admin/api/class/update", name="api_class_update_save")
     * @Method({"PUT"})
     * @Rest\View(statusCode=204)
     */
-   public function itemUpdateSaveAction(Request $request)
+   public function classUpdateSaveAction(Request $request)
    {
       $statusCode = 201;
         $this->get('logger')->info($request);
-     $form = $this->createForm(ItemType::class, new Item(),array('method' => 'PUT'));
+     $form = $this->createForm(ClassType::AClass, new AClass(),array('method' => 'PUT'));
      $form->handleRequest($request);
 
      $this->get('logger')->info('Here we go with update.');
 
        if ($form->isValid()) {
-           $item = $form->getData();
-           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+           $class = $form->getData();
+           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($class, 'json'));
 
-           $this->get("api_inventory.bo.item")->update($item);
+           $this->get("api_inventory.bo.class")->update($class);
 
 
            $response = new Response();
@@ -149,24 +149,24 @@ class ItemApiController extends Controller
 //
 //     /**
 //     *
-//     * @Route("/admin/api/item/update", name="api_item_update_save")
+//     * @Route("/admin/api/class/update", name="api_class_update_save")
 //     * Method({"PUT"})
 //     */
-//    public function itemUpdateSaveAction(Item $item)
+//    public function classUpdateSaveAction(class $class)
 //    {
-//       $form = $this->createForm(ItemType::class, new Item());
+//       $form = $this->createForm(classType::class, new class());
 //       $form->handleRequest($request);
 //
 //        if ($form->isValid()) {
 //
-//            $item = $form->getData();
+//            $class = $form->getData();
 //
-//            $this->get("api_inventory.bo.item")->update($item);
-//            //$response =  $this->forward('apiInventoryBundle:Item:detail.html.twig', array('item' => $item));
+//            $this->get("api_inventory.bo.class")->update($class);
+//            //$response =  $this->forward('apiInventoryBundle:class:detail.html.twig', array('class' => $class));
 //            return $this->indexAction();
 //        } else {
 //
-//            $response = $this->render('apiInventoryBundle:Item:update.html.twig', array('form'=> $form->createView()));
+//            $response = $this->render('apiInventoryBundle:class:update.html.twig', array('form'=> $form->createView()));
 //        }
 //        return $response;
 //
@@ -174,12 +174,12 @@ class ItemApiController extends Controller
 //
 //    /**
 //     *
-//     * @Route("/admin/api/item/delete/{id}", name="api_item_delete")
+//     * @Route("/admin/api/class/delete/{id}", name="api_class_delete")
 //     */
-//    public function itemDeleteAction($id)
+//    public function classDeleteAction($id)
 //    {
-//        $item = $this->get("api_inventory.bo.item")->selectById($id);
-//        return $this->render('apiInventoryBundle:Item:delete.html.twig',array("item"=>$item));
+//        $class = $this->get("api_inventory.bo.class")->selectById($id);
+//        return $this->render('apiInventoryBundle:class:delete.html.twig',array("class"=>$class));
 //    }
 //
 //

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pello\InventoryBundle\Tests\Controller;
+namespace ApiBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

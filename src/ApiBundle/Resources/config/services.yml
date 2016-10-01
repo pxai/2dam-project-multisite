@@ -36,3 +36,11 @@ services:
     api_inventory.bo.event:
          class: ApiBundle\Service\Business\EventBusiness
          arguments: ['@api_inventory.dao.event']
+
+    api_inventory.dao.beat:
+         class: ApiBundle\Service\DAO\BeatDAO
+         arguments: ['ApiBundle:Beat', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.beat:
+         class: ApiBundle\Service\Business\BeatBusiness
+         arguments: ['@api_inventory.dao.beat']

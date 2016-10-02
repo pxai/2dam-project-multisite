@@ -44,3 +44,11 @@ services:
     api_inventory.bo.beat:
          class: ApiBundle\Service\Business\BeatBusiness
          arguments: ['@api_inventory.dao.beat']
+
+    api_inventory.dao.idea:
+         class: ApiBundle\Service\DAO\IdeaDAO
+         arguments: ['ApiBundle:Idea', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.idea:
+         class: ApiBundle\Service\Business\IdeaBusiness
+         arguments: ['@api_inventory.dao.idea']

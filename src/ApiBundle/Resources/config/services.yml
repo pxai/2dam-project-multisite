@@ -52,3 +52,11 @@ services:
     api_inventory.bo.idea:
          class: ApiBundle\Service\Business\IdeaBusiness
          arguments: ['@api_inventory.dao.idea']
+
+    api_inventory.dao.chatgroup:
+         class: ApiBundle\Service\DAO\ChatGroupDAO
+         arguments: ['ApiBundle:ChatGroup', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.chatgroup:
+         class: ApiBundle\Service\Business\ChatGroupBusiness
+         arguments: ['@api_inventory.dao.chatgroup']

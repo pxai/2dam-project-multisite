@@ -10,6 +10,10 @@
                 <source>position</source>
                 <target>Puesto</target>
             </trans-unit>
+                         <trans-unit id="3">
+                             <source>login incorrect</source>
+                             <target>Login incorrecto</target>
+                         </trans-unit>
         </body>
     </file>
 </xliff>

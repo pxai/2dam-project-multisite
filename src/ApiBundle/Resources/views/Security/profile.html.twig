@@ -1,0 +1,11 @@
+{% extends "ApiBundle:Default:layout.html.twig" %}
+{% block title %}Inventory Sample::Profile{% endblock %}
+{% block body %}
+
+    <h1>Welcome to your profile {{ user.login }}</h1>
+    <td>
+        {% for role in user.roles %}
+            {{ role.name }},
+        {% endfor %}
+    </td>
+{% endblock %}

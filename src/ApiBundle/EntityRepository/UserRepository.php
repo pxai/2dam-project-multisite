@@ -18,4 +18,26 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * customized findApplicant
+     */
+    public function findUser($email)
+    {
+
+        $user = $this->findOneBy(array("email" => $email));
+        return $user;
+    }
+
+    /**
+     * check login for user findApplicant
+     */
+    public function checkLogin($new_user)
+    {
+
+        $user = $this->findOneBy(array("login"=> $new_user->getLogin(), "password" => $new_user->getPassword()));
+        return $user;
+    }
+
+
 }

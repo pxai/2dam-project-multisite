@@ -2,23 +2,35 @@
 {% block title %}Inventory Sample::Login{% endblock %}
 {% block body %}
 {% if error %}
+    {# For complex error messages
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    #}
 {% endif %}
 
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
-
-    {#
+    {% if error %}
+        <div>{{ error}}</div>
+    {% endif %}
+    <form method="post" action="{{ path('login_check') }}">
+        {{ form_errors(form) }}
+        <div class="form-group">
+            <i class="fa fa-envelope" aria-hidden="true"></i>  {{ form_label(form.login) }}
+            {{ form_errors(form.login) }}
+            {{ form_widget(form.login, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <i class="fa fa-key" aria-hidden="true"></i>   {{ form_label(form.password) }}
+            {{ form_errors(form.password) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {#
         If you want to control the URL the user
         is redirected to on success (more details below)
         <input type="hidden" name="_target_path" value="/account" />
     #}
-
-    <button type="submit">login</button>
-</form>
+        <div class="form-group">
+            {{ form_row(form._token) }}
+            {{ form_widget(form.save, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </form>
 
 {% endblock %}

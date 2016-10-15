@@ -5,6 +5,7 @@ namespace ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
  * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\UserRepository")
  * @ORM\Table(name="user")
@@ -34,10 +35,11 @@ class User extends Entity implements UserInterface, \Serializable
     private $email;
 
    /**
-     * @ManyToMany(targetEntity="Role")
-     * @JoinTable(name="user_roles",
-     *      joinColumns={@JoinColumn(name="iduser", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="idrole", referencedColumnName="id", unique=true)}
+    * @var Roles
+     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\JoinTable(name="user_role",
+     *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="idrole", referencedColumnName="id", unique=true)}
      *      )
      */
     private $roles;
@@ -51,8 +53,7 @@ class User extends Entity implements UserInterface, \Serializable
         return substr( str_shuffle( $chars ), 0, $length );
     }
     
-    /**
-    *
+    /*
     */
     public function getId () {
       return $this->id;  
@@ -89,7 +90,7 @@ class User extends Entity implements UserInterface, \Serializable
     
    public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return $this->roles;
     }
 
     public function eraseCredentials()
@@ -125,7 +126,7 @@ class User extends Entity implements UserInterface, \Serializable
     }
 
     public function setPassword($password) {
-        $this->password = $password;
+        $this->password = sha1($password);
     }
 
        public function setEmail($email) {

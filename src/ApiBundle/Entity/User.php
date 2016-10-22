@@ -44,9 +44,27 @@ class User extends Entity implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @var ChatGroups
+     * @ORM\ManyToMany(targetEntity="ChatGroup")
+     * @ORM\JoinTable(name="chatgroup_user",
+     *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="idchatgroup", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $chatGroups;
+
+
+    /**
+     * @OneToMany(targetEntity="Message", mappedBy="user")
+     */
+    private $messages;
+
     public function __construct () {
         $this->since = time();
         $this->roles = array();
+        $this->chatGroups = array();
+        $this->messages = array();
     }
 
     public function randPassword( $length = 8, $chars = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789' ) {
@@ -93,6 +111,16 @@ class User extends Entity implements UserInterface, \Serializable
         return $this->roles;
     }
 
+    /**
+     * @return ChatGroups
+     */
+    public function getChatGroups()
+    {
+        return $this->chatGroups;
+    }
+
+
+
     public function eraseCredentials()
     {
     }
@@ -135,5 +163,13 @@ class User extends Entity implements UserInterface, \Serializable
 
     public function setRoles ($roles) {
         $this->roles = $roles;
+    }
+
+    /**
+     * @param ChatGroups $chatGroups
+     */
+    public function setChatGroups($chatGroups)
+    {
+        $this->chatGroups = $chatGroups;
     }
 }

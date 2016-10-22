@@ -60,3 +60,11 @@ services:
     api_inventory.bo.chatgroup:
          class: ApiBundle\Service\Business\ChatGroupBusiness
          arguments: ['@api_inventory.dao.chatgroup']
+
+    api_inventory.dao.message:
+         class: ApiBundle\Service\DAO\MessageDAO
+         arguments: ['ApiBundle:Message', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.message:
+         class: ApiBundle\Service\Business\MessageBusiness
+         arguments: ['@api_inventory.dao.message']

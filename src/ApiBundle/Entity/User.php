@@ -56,7 +56,7 @@ class User extends Entity implements UserInterface, \Serializable
 
 
     /**
-     * @OneToMany(targetEntity="Message", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
      */
     private $messages;
 

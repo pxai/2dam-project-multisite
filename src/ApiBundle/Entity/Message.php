@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\IdeaRepository")
- * @ORM\Table(name="idea")
+ * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\MessageRepository")
+ * @ORM\Table(name="message")
  */
-class messages extends Entity
+class Message extends Entity
 {
 
     /**
@@ -21,19 +21,19 @@ class messages extends Entity
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="messages")
-     * @JoinColumn(name="iduser", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\JoinColumn(name="iduser", referencedColumnName="id")
      */
     private $usesr;
 
     /**
-     * @ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
-     * @JoinColumn(name="idgroup", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
+     * @ORM\JoinColumn(name="idgroup", referencedColumnName="id")
      */
     private $group;
   
      /**
-     * @ORM\Column(name="description",type="string", length=100)
+     * @ORM\Column(name="content",type="string", length=100)
      */
     private $content;
 

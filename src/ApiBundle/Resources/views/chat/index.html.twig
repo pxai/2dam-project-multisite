@@ -3,13 +3,13 @@
 {% block body %}
     <h2>{% trans %}Chat index{% endtrans %} <span class="glyphicon glyphicon-heart"></span></h2>
     <div class="table-responsive">
-        <a href="{{ path('chat_group_index') }}">Refresh</a> |
-        <a href="{{ path('chat_group_new') }}">New</a> |
+        <a href="{{ path('chatgroup_index') }}">Refresh</a> |
+        <a href="{{ path('chatgroup_new') }}">New</a> |
         <table class="table .table-condensed">
             <div id='items'>
-                {% for group in groups %}
-                    <div class="item">{{ group.id }}: {{ group.name }}
-                        <a href="{{ path('chat_group_chat', {'id': group.id }) }}">Enter</a>
+                {% for chatgroup in chatgroups %}
+                    <div class="item">{{ chatgroup.id }}: {{ chatgroup.name }}
+                        <a href="{{ path('chatgroup_chat', {'id': chatgroup.id }) }}">Enter</a>
                     </div>
                 {% endfor %}
             </div>

@@ -1,11 +1,12 @@
 {% extends "ApiBundle:Default:layout.html.twig" %}
-{% block title %}Inventory Sample::Profile{% endblock %}
+{% block title %}Multisite::Profile{% endblock %}
 {% block body %}
 
     <h1>Welcome to your profile {{ user.login }}</h1>
-    <td>
         {% for role in user.roles %}
-            {{ role.name }},
+            <div>  {{ role.name }},  </div>
         {% endfor %}
-    </td>
+
+    <div><a href="{{ path('chatgroup_index') }}">Chat Group</a></div>
+
 {% endblock %}

@@ -12,6 +12,21 @@ Or it is installed
 ```
 composer update
 ```
+# assets
+## Generating comupiled assets
+
+```
+php bin/console assetic:dump --env=dev --no-debug
+php bin/console assetic:dump
+```
+Apply watch
+```
+php bin/console assetic:watch
+```
+In case of problems:
+```
+php bin/console cache:clear --env=prod
+``
 tmpt
 ====
 

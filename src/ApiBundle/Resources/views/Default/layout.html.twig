@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{% block title %}Inventory{% endblock title %}</title>
+<title>{% block title %}Multisite{% endblock title %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    {% stylesheets
+    'bundles/api/css/bootstrap.min.css'
+    'bundles/api/css/bootstrap-theme.min.css'
+    filter='cssrewrite' output='css/compiled/app.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% block head %}{% endblock %}
 
 </head>
@@ -14,5 +19,24 @@
 {% block body %}{% endblock body %}
 
 </div>
+{% block javascripts %}
+    <!-- JavaScript plugins (requires jQuery) -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/09c458bfbf.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    {% javascripts '@ApiBundle/Resources/public/js/bootstrap.min.js' %}
+    <!-- Optionally enable responsive features in IE8 -->
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+    {# % javascripts '@CuatrovientosArteanBundle/Resources/public/js/respond.js' % }
+        <!-- Optionally enable responsive features in IE8 -->
+        <script src="{{ asset_url }}"></script>
+     {  %endjavascripts % #}
+{% endblock %}
+{% block customjavascripts %}
+{% endblock %}
 </body>
 </html>

@@ -72,8 +72,8 @@ class MessageApiController extends Controller
         $this->get('logger')->info($request);
      $form = $this->createForm(MessageType::class, new Message());
      $form->handleRequest($request);
-
-     $this->get('logger')->info('Here we go.');
+       $message = $form->getData();
+     $this->get('logger')->info('Here we go.' . $this->serializer->serialize($message, 'json'));
 
        if ($form->isValid()) {
            $message = $form->getData();

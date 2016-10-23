@@ -49,13 +49,12 @@ class ChatGroupController extends Controller
 
     /**
      *
-     * @Route("/admin/api/chatgroup/detail/{id}", name="chatgroup_chat")
-     * @Rest\View
+     * @Route("/admin/chatgroup/detail/{id}", name="chatgroup_chat")
      */
     public function chatgroupDetailAction($id)
     {
         $chatgroup = $this->get("api_inventory.bo.chatgroup")->selectById($id);
-        return $chatgroup;
+        return $this->render('ApiBundle:Chat:chatgroup.html.twig',array("chatgroup"=>$chatgroup));
     }
 
     /**

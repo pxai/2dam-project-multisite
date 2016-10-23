@@ -1,0 +1,22 @@
+#chatdiv, #peoplediv {
+    height: 300px;
+    margin: 1em;
+    overflow: auto;
+}
+
+#chatdiv {
+    border: 1px solid lightblue;
+    font-size: 0.9em;
+}
+
+#peoplediv {
+    border: 1px solid lightsalmon;
+    font-size: 1.1em;
+}
+
+#messagediv  {
+}
+
+#messagediv input {
+
+}

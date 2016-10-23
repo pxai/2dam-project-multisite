@@ -24,7 +24,7 @@ class Message extends Entity
      * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
      * @ORM\JoinColumn(name="iduser", referencedColumnName="id")
      */
-    private $usesr;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
@@ -54,7 +54,7 @@ class Message extends Entity
 
 
     public function __construct () {
-        $this->ideaDate = new \DateTime();
+        $this->messageDate = new \DateTime();
     }
 
 
@@ -62,24 +62,107 @@ class Message extends Entity
         return $this->id;
     }
 
-    function getName() {
-        return $this->name;
-    }
 
-    function getDescription() {
-        return $this->description;
-    }
 
     function setId($id) {
         $this->id = $id;
     }
 
-    function setName($name) {
-        $this->name = $name;
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 
-    function setDescription($description) {
-        $this->description = $description;
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessageDate()
+    {
+        return $this->messageDate;
+    }
+
+    /**
+     * @param mixed $messageDate
+     */
+    public function setMessageDate($messageDate)
+    {
+        $this->messageDate = $messageDate;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * @param mixed $group
+     */
+    public function setGroup($group)
+    {
+        $this->group = $group;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
     }
 
 

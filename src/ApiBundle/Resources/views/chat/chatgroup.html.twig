@@ -1,0 +1,38 @@
+{% extends "ApiBundle:Default:layout.html.twig" %}
+{% block title %}Chat{% endblock %}
+{% block head %}
+     {% stylesheets
+     '@ApiBundle/Resources/public/css/chat.css'
+     filter='cssrewrite' output='css/compiled/custom.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+    <h2>{% trans %}Chat index{% endtrans %} <span class="glyphicon glyphicon-heart"></span></h2>
+    <div class="table-responsive">
+        <a href="{{ path('chatgroup_index') }}">Back to index</a> |
+        <a href="{{ path('chatgroup_new') }}">New</a> |
+        {{ chatgroup.name }} - {{ chatgroup.since|date('d-m-Y') }}
+    </div>
+    <div class="row">
+        <div id="chatdiv" class="col-md-6" data-url="{{ path('api_message_index') }}">Loading...</div>
+        <div id="peoplediv" class="col-md-2">
+            {% for user in chatgroup.users %}
+                <div class="item"><i class="fa fa-user"></i> {{ user.username }}
+                    <!--a href="{{ path('chatgroup_chat', {'id': user.id }) }}">Enter</a-->
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div id="messagediv" class="col-md-8">
+            <input type="text" size="80" id="message" data-url="{{ path('api_message_new_save') }}" data-idgroup="1"/>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customjavascripts %}
+    {% javascripts '@ApiBundle/Resources/public/js/chat.js' %}
+        <script src="{{ asset_url }}"></script>
+     {% endjavascripts %}
+{% endblock %}

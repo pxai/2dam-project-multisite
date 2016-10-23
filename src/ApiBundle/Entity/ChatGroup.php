@@ -27,11 +27,20 @@ class ChatGroup extends Entity
      */
     private $since;
 
-
+    /**
+     * @var users
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="chatgroup_user",
+     *      joinColumns={@ORM\JoinColumn(name="idchatgroup", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $users;
 
 
     public function __construct () {
         $this->since = new \DateTime();
+        $this->users =  array();
     }
 
     /**
@@ -65,5 +74,35 @@ class ChatGroup extends Entity
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSince()
+    {
+        return $this->since;
+    }
 
+    /**
+     * @param mixed $since
+     */
+    public function setSince($since)
+    {
+        $this->since = $since;
+    }
+
+    /**
+     * @return users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param users $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
 }

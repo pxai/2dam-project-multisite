@@ -4,8 +4,12 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
+ #       in_memory:
+ #           memory: ~
+        our_db_provider:
+            entity:
+                class: ApiBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,5 +24,20 @@ security:
             # http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
+            form_login:
+                provider:   our_db_provider
+                login_path: login
+                check_path: login
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+                target_path_parameter: redirect_url
+            logout:
+                path:   logout
+                target: login
+    access_control:
+       # require ROLE_ADMIN for /admin*
+       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/admin, roles: ROLE_ADMIN }
+
+    encoders:
+        ApiBundle\Entity\User:
+            algorithm: sha1

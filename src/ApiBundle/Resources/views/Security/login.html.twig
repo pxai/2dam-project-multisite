@@ -8,28 +8,30 @@
 {% endif %}
 
     {% if error %}
-        <div>{{ error}}</div>
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-    <form method="post" action="{{ path('login_check') }}">
-        {{ form_errors(form) }}
+
+    {# % if error %}
+        <div>{{ error }}</div>
+    {% endif % #}
+    <form method="post" action="{{ path('login') }}">
         <div class="form-group">
-            <i class="fa fa-envelope" aria-hidden="true"></i>  {{ form_label(form.login) }}
-            {{ form_errors(form.login) }}
-            {{ form_widget(form.login, {'attr': {'class': 'form-control'}}) }}
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
         </div>
         <div class="form-group">
-            <i class="fa fa-key" aria-hidden="true"></i>   {{ form_label(form.password) }}
-            {{ form_errors(form.password) }}
-            {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+            <i class="fa fa-key" aria-hidden="true"></i>
+            <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
         </div>
+        <input type="hidden" name="_target_path" value="/admin/chatgroup" />
         {#
         If you want to control the URL the user
         is redirected to on success (more details below)
         <input type="hidden" name="_target_path" value="/account" />
-    #}
-        <div class="form-group">
-            {{ form_row(form._token) }}
-            {{ form_widget(form.save, {'attr': {'class': 'form-control'}}) }}
+    #} <div class="form-group">
+        <button type="submit">login</button>
         </div>
     </form>
 

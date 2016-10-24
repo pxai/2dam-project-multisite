@@ -35,7 +35,7 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
     public function checkLogin($new_user)
     {
 
-        $user = $this->findOneBy(array("login"=> $new_user->getLogin(), "password" => $new_user->getPassword()));
+        $user = $this->findOneBy(array("username"=> $new_user->getUsername(), "password" => $new_user->getPassword()));
         return $user;
     }
 

@@ -13,27 +13,40 @@ class SecurityController extends Controller
      /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request,$error='',$lastUsername='')
+    public function loginAction(Request $request)
     {
         $authenticationUtils = $this->get('security.authentication_utils');
-        $form = $this->createForm(UserSignInType::class);
 
         // get the login error if there is one
-        //$error = $authenticationUtils->getLastAuthenticationError();
+        $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
-       // $lastUsername = $authenticationUtils->getLastUsername();
+       $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
             'ApiBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
-                'error'         => $error,
-                'form'=> $form->createView()
+                'error'         => $error
             )
         );
     }
+
+
+    /**
+       *
+       * @Route("/profile", name="profile")
+    */
+    public function profileAction (Request $request)
+    {
+        $user = new User();
+        $user->setUsername('Test');
+        $response =  $this->render('ApiBundle:Security:profile.html.twig', array('user' => $user));
+    }
+//    {
+//    public function userSignInSaveAction(Request $request)
+//    {
 
     /**
      *
@@ -46,7 +59,7 @@ class SecurityController extends Controller
         $form = $this->createForm(UserSignInType::class, new User());
         $lastUsername = '';
         $error = '';
-
+        $this->get('logger')->info('oh my god.');
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
 

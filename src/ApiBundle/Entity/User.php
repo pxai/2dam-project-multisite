@@ -20,9 +20,9 @@ class User extends Entity implements UserInterface, \Serializable
     private $id;
     
      /**
-     * @ORM\Column(name="login",type="string", length=50)
+     * @ORM\Column(name="username",type="string", length=50)
      */
-    private $login;
+    private $username;
   
      /**
      * @ORM\Column(name="password",type="string", length=100)
@@ -85,13 +85,9 @@ class User extends Entity implements UserInterface, \Serializable
         return $this;
     }
 
-
-    public function getLogin() {
-        return $this->login;
-    }
     
     public function getUsername() {
-        return $this->login;
+        return $this->username;
     }
 
     public function getPassword() {
@@ -149,8 +145,8 @@ class User extends Entity implements UserInterface, \Serializable
         ) = unserialize($serialized);
     }
     
-    public function setLogin($login) {
-        $this->login = $login;
+    public function setUsername($username) {
+        $this->username = $username;
     }
 
     public function setPassword($password) {

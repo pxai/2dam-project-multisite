@@ -16,7 +16,7 @@ class UserSignInType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('login', TextType::class,array(
+            ->add('username', TextType::class,array(
                 "label"=>"Email",
                 "required"=>true
                 ))
@@ -44,6 +44,6 @@ class UserSignInType extends AbstractType {
     }
     
     public function getName() {
-        return 'center';
+        return 'user';
     }
 }

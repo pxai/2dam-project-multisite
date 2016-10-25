@@ -37,10 +37,15 @@ class ChatGroup extends Entity
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="group")
+     */
+    private $messages;
 
     public function __construct () {
         $this->since = new \DateTime();
         $this->users =  array();
+        $this->messages =  array();
     }
 
     /**
@@ -105,4 +110,22 @@ class ChatGroup extends Entity
     {
         $this->users = $users;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @param mixed $messages
+     */
+    public function setMessages($messages)
+    {
+        $this->messages = $messages;
+    }
+
+
 }

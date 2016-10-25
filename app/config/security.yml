@@ -6,6 +6,12 @@ security:
     providers:
  #       in_memory:
  #           memory: ~
+        in_memory:
+            memory:
+                 # this was here when we started: 2 hardcoded users
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         our_db_provider:
             entity:
                 class: ApiBundle:User
@@ -25,9 +31,9 @@ security:
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
             form_login:
-                provider:   our_db_provider
-                login_path: login
-                check_path: login
+                provider:   in_memory
+                login_path: /login
+                check_path: /login_check
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
                 target_path_parameter: redirect_url
             logout:
@@ -39,5 +45,6 @@ security:
        - { path: ^/admin, roles: ROLE_ADMIN }
 
     encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
         ApiBundle\Entity\User:
             algorithm: sha1

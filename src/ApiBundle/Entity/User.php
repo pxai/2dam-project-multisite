@@ -61,6 +61,7 @@ class User extends Entity implements UserInterface, \Serializable
     private $messages;
 
     public function __construct () {
+        $this->isActive = true;
         $this->since = time();
         $this->roles = array();
         $this->chatGroups = array();
@@ -104,7 +105,8 @@ class User extends Entity implements UserInterface, \Serializable
     
    public function getRoles()
     {
-        return $this->roles;
+        //return $this->roles;
+        return array('ROLE_ADMIN');
     }
 
     /**
@@ -126,7 +128,7 @@ class User extends Entity implements UserInterface, \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->login,
+            $this->username,
             $this->password,
             // see section on salt below
             // $this->salt,
@@ -138,7 +140,7 @@ class User extends Entity implements UserInterface, \Serializable
     {
         list (
             $this->id,
-            $this->login,
+            $this->username,
             $this->password,
             // see section on salt below
             // $this->salt

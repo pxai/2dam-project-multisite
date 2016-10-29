@@ -16,7 +16,7 @@ class MessageType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                        ->add('message', EntityType::class, array (
+                        ->add('Message', EntityType::class, array (
                                "class" => "ApiBundle:Message"
                            )
                );

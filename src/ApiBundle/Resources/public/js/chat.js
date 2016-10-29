@@ -31,7 +31,7 @@ $( document ).ready(function() {
             .done(function( data ) {
                 console.log( "Data Loaded: ");
                 console.log(data);
-                setTimeout(worker, 5000);
+                //setTimeout(worker, 5000);
             });
            /* success: function(data) {
                 $('.result').html(data);

@@ -26,13 +26,15 @@
 </div>
 {% block javascripts %}
     <!-- JavaScript plugins (requires jQuery) -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
+    <!--script src="//code.jquery.com/jquery.min.js"></script-->
     <script src="https://use.fontawesome.com/09c458bfbf.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    {% javascripts '@ApiBundle/Resources/public/js/bootstrap.min.js' %}
-    <!-- Optionally enable responsive features in IE8 -->
-    <script src="{{ asset_url }}"></script>
+    {% javascripts
+                    '@ApiBundle/Resources/public/js/bootstrap.min.js'
+                    '@ApiBundle/Resources/public/js/jquery.js' %}
+        <!-- Optionally enable responsive features in IE8 -->
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
 
@@ -42,6 +44,6 @@
      {  %endjavascripts % #}
 {% endblock %}
 {% block customjavascripts %}
-{% endblock %}
+{% endblock customjavascripts %}
 </body>
 </html>

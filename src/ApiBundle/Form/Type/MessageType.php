@@ -8,15 +8,19 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use ApiBundle\Entity\ChatGroup;
 
 class MessageType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('content', HiddenType::class)
-            ->add('group', HiddenType::class);
+            ->add('group', EntityType::class, array (
+                                "class" => "ApiBundle:ChatGroup"
+                            )
+                );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

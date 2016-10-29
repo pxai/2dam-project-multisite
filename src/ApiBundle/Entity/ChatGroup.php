@@ -5,7 +5,7 @@ namespace ApiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\ItemRepository")
+ * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\ChatGroupRepository")
  * @ORM\Table(name="chatgroup")
  */
 class ChatGroup extends Entity

@@ -105,8 +105,9 @@ class User extends Entity implements UserInterface, \Serializable
     
    public function getRoles()
     {
+       // var_dump($this->roles);
         //return $this->roles;
-        return array('ROLE_ADMIN');
+        return array('ROLE_ADMIN','ROLE_USER');
     }
 
     /**

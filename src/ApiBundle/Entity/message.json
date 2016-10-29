@@ -1,0 +1,10 @@
+{
+  Message:
+  {
+    content: "epa",
+    ChatGroup:
+      {
+        id: 1
+      }
+  }
+}

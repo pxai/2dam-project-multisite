@@ -13,29 +13,7 @@ use ApiBundle\Service\DAO\IdeaDAO;
 class IdeaBusiness extends GenericBusiness {
     
     
-  /*  private $classDAO;
-    
-    public function __construct (ClassDAO $classDAO) {
-        $this->classDAO = $classDAO;
-    }
-    
-
-    public function selectAll() {
-        return $this->classDAO->selectAll();
-    }
-    
-
-    public function selectById($id) {
-        return $this->classDAO->selectById($id);
-    }
-    
-
-    public function create (Class $class) {
-        return $this->classDAO->create($class);
-    }
-    
-
-    public function remove(Class $class) {
-        return $this->classDAO->remove($class);
+  /*      public function selectLast($id) {
+        return $this->entityDAO->selectLast($id);
     }*/
 }

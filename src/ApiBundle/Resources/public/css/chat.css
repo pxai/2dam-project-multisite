@@ -1,22 +1,64 @@
+body {
+    background-color: #A5C261;
+}
 #chatdiv, #peoplediv {
-    height: 300px;
     margin: 1em;
-    overflow: auto;
 }
 
 #chatdiv {
-    border: 1px solid lightblue;
+    margin: 2em;
     font-size: 0.9em;
 }
 
 #peoplediv {
-    border: 1px solid lightsalmon;
-    font-size: 1.1em;
+    font-size: 1em;
+}
+
+#bottombar {
+
+    height:5em;
+    background-color: #2b669a;
+}
+
+#bottombarlogo {
+    padding-top: 0.8em;
+    color: white;
+    font-size: 2em;
+    text-align: right;
 }
 
 #messagediv  {
+    padding: 1em;
 }
 
-#messagediv input {
+#messagediv textarea {
+    width: 100%;
+}
 
+.divmessage {
+    background-color: #BBD877;
+    border-radius: 0.3em;
+    margin: 0.4em;
+    padding: 0.3em;
+}
+#bottombartool {
+    padding-top: 0.8em;
+    color: white;
+    font-size: 2em;
+    text-align: left;
+}
+
+.divmessage .divuser {
+    text-align: left;
+    font-weight: bold;
+}
+
+.divmessage .divdate {
+     text-align: right;
+ }
+
+div#waiting {
+    font-style: italic;
+    color: greenyellow;
+    margin: 1em;
 }

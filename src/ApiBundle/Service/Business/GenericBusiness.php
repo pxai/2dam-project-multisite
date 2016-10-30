@@ -12,7 +12,7 @@ use ApiBundle\Service\DAO\GenericDAO;
  */
 class GenericBusiness {
     
-    private $entityDAO;
+    protected $entityDAO;
     
     public function __construct (GenericDAO $entityDAO) {
         $this->entityDAO = $entityDAO;

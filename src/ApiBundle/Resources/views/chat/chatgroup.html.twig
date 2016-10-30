@@ -8,25 +8,49 @@
     {% endstylesheets %}
 {% endblock %}
 {% block body %}
-    <h2>{% trans %}Chat index{% endtrans %} <span class="glyphicon glyphicon-heart"></span></h2>
-    <div class="table-responsive">
-        <a href="{{ path('chatgroup_index') }}">Back to index</a> |
-        <a href="{{ path('chatgroup_new') }}">New</a> |
-        {{ chatgroup.name }} - {{ chatgroup.since|date('d-m-Y') }}
-    </div>
-    <div class="row">
-        <div id="chatdiv" class="col-md-6" data-url="{{ path('api_message_index') }}">Loading...</div>
-        <div id="peoplediv" class="col-md-2">
-            {% for user in chatgroup.users %}
-                <div class="item"><i class="fa fa-user"></i> {{ user.username }}
-                    <!--a href="{{ path('chatgroup_chat', {'id': user.id }) }}">Enter</a-->
-                </div>
-            {% endfor %}
+     <div class="row">
+        <div class="col-md-9" >
+             <h2><span class="glyphicon glyphicon-comment"></span>
+            {{ chatgroup.name }} - {{ chatgroup.since|date('d-m-Y') }} </h2>
+        </div>
+         <div class="col-md-3" >
+             <a href="{{ path('chatgroup_index') }}">Back to index</a> |
+             <a href="{{ path('chatgroup_new') }}">New</a>
+
         </div>
     </div>
-    <div class="row">
+     <div class="row">
+         <div id="peoplediv" class="col-md-12"  data-id="{{ app.user.id }}">
+             <span class="glyphicon glyphicon-user"></span>
+             {% for user in chatgroup.users %}
+                 <span class="item"><i class="fa fa-user"></i> {{ user.username }},
+                     <!--a href="{{ path('chatgroup_chat', {'id': user.id }) }}">Enter</a-->
+                     </span>
+             {% endfor %}
+             ...
+         </div>
+     </div>
+    <div class="row" >
+        <div class="col-md-12" >
+           <div id="chatdiv" data-url="{{ path('api_message_last') }}">
+            Loading...
+            </div>
+        </div>
+    </div>
+    <div class="row" id="waiting">
+        <div class="col-md-12" >
+        Waiting for messages...
+        </div>
+    </div>
+    <div class="row navbar-fixed-bottom " id="bottombar">
+         <div class="col-md-2" id="bottombarlogo">
+             <span class="glyphicon glyphicon-comment"></span>
+         </div>
         <div id="messagediv" class="col-md-8">
-            <input type="text" size="80" id="message" data-url="{{ path('api_message_new_save') }}" data-idgroup="1"/>
+            <textarea id="message"  ></textarea>
+        </div>
+        <div class="col-md-2" id="bottombartool">
+            <a href="" data-url="{{ path('api_message_new_save') }}" data-idgroup="1" id="sendmessage"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
         </div>
     </div>
 {% endblock %}

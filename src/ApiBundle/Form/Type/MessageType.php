@@ -16,15 +16,14 @@ class MessageType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                        ->add('Message', EntityType::class, array (
-                               "class" => "ApiBundle:Message"
-                           )
-               );
-           // ->add('content', HiddenType::class)
-           // ->add('group', EntityType::class, array (
-           //                     "class" => "ApiBundle:ChatGroup"
-           //                 )
-           //     );
+            ->add('content', HiddenType::class)
+            ->add('user', EntityType::class, array (
+                    "class" => "ApiBundle:User"
+                ))
+            ->add('group', EntityType::class, array (
+                               "class" => "ApiBundle:ChatGroup"
+                            )
+                );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
@@ -35,6 +34,6 @@ class MessageType extends AbstractType {
     }
 
     public function getName() {
-        return 'message';
+        return 'Message';
     }
 }

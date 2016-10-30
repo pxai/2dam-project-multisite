@@ -1,10 +1,7 @@
 {
-  Message:
-  {
-    content: "epa",
-    ChatGroup:
-      {
-        id: 1
-      }
+  "message": {
+    "content": "epa",
+    "user" : 1,
+    "group": 1
   }
 }

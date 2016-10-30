@@ -49,6 +49,15 @@ class MessageApiController extends Controller
     }
 
     /**
+     * @Route("/admin/api/message/last/{id}", name="api_message_last", defaults={"id":0})
+     * @Rest\View
+     */
+    public function lastMessageAction($id)
+    {
+        $messages = $this->get("api_inventory.bo.message")->selectLast($id);
+        return $messages;
+    }
+    /**
      *
      * @Route("/admin/api/message/detail/{id}", name="api_message_detail")
      * @Rest\View
@@ -72,12 +81,14 @@ class MessageApiController extends Controller
         $this->get('logger')->info($request);
      $form = $this->createForm(MessageType::class, new Message());
      $form->handleRequest($request);
+       $this->get('logger')->info('Almost there');
+
        $message = $form->getData();
-     $this->get('logger')->info('Here we go.' . $this->serializer->serialize($message, 'json'));
+     $this->get('logger')->info('Here we go.');
 
        if ($form->isValid()) {
            $message = $form->getData();
-           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($message, 'json'));
+           //$this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($message, 'json'));
 
            $this->get("api_inventory.bo.message")->create($message);
 

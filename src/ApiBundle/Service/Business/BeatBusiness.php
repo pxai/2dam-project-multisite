@@ -13,29 +13,11 @@ use ApiBundle\Service\DAO\BeatDAO;
 class BeatBusiness extends GenericBusiness {
     
     
-  /*  private $itemDAO;
-    
-    public function __construct (ItemDAO $itemDAO) {
-        $this->itemDAO = $itemDAO;
+  /*
+      public function selectLast($id) {
+        return $this->entityDAO->selectLast($id);
     }
     
 
-    public function selectAll() {
-        return $this->itemDAO->selectAll();
-    }
-    
-
-    public function selectById($id) {
-        return $this->itemDAO->selectById($id);
-    }
-    
-
-    public function create (Item $item) {
-        return $this->itemDAO->create($item);
-    }
-    
-
-    public function remove(Item $item) {
-        return $this->itemDAO->remove($item);
-    }*/
+  */
 }

@@ -54,6 +54,7 @@ class ChatGroupController extends Controller
     public function chatgroupDetailAction($id)
     {
         $chatgroup = $this->get("api_inventory.bo.chatgroup")->selectById($id);
+
         return $this->render('ApiBundle:Chat:chatgroup.html.twig',array("chatgroup"=>$chatgroup));
     }
 

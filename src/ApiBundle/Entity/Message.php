@@ -27,10 +27,12 @@ class Message extends Entity
     private $user;
 
     /**
+     * @var ChatGroup
      * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
      * @ORM\JoinColumn(name="idgroup", referencedColumnName="id")
      */
     private $group;
+
   
      /**
      * @ORM\Column(name="content",type="string", length=100)
@@ -55,6 +57,8 @@ class Message extends Entity
 
     public function __construct () {
         $this->messageDate = new \DateTime();
+        $this->latitude = 0;
+        $this->longitude = 0;
     }
 
 

@@ -50,7 +50,7 @@
             <textarea id="message"  ></textarea>
         </div>
         <div class="col-md-2" id="bottombartool">
-            <a href="" data-url="{{ path('api_message_new_save') }}" data-idgroup="1" id="sendmessage"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+            <a href="" data-url="{{ path('api_message_new_save') }}" data-idgroup="{{ chatgroup.id }}" id="sendmessage"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
         </div>
     </div>
 {% endblock %}

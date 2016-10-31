@@ -17,6 +17,7 @@
 <div class="container">
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <a class="link" href="{{ path('logout') }}">Logout</a>
+        <div><a href="{{ path('chatgroup_index') }}">Chat Groups</a></div>
     {% else %}
         <a class="link" href="{{ path('login') }}">Login</a>
     {% endif %}

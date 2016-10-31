@@ -49,6 +49,8 @@ class Beat extends Entity
 
     public function __construct () {
         $this->beatDate = new \DateTime();
+        $this->latitude = 0;
+        $this->longitude = 0;
     }
 
     /**

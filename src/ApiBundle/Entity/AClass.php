@@ -34,8 +34,19 @@ class AClass extends Entity
      */
     private $since;
 
-    public function __construct () {
+    /**
+     * @ORM\Column(name="latitude",type="float")
+     */
+    private $latitude;
 
+    /**
+     * @ORM\Column(name="longitude",type="float")
+     */
+    private $longitude;
+
+    public function __construct () {
+        $this->latitude = 0;
+        $this->longitude = 0;
     }
 
 
@@ -77,6 +88,38 @@ class AClass extends Entity
     public function setSince($since)
     {
         $this->since = $since;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
     }
 
 

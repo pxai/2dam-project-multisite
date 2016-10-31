@@ -45,6 +45,8 @@ class Event extends Entity
 
     public function __construct () {
         $this->eventDate = new \DateTime();
+        $this->latitude = 0;
+        $this->longitude = 0;
     }
 
     /**

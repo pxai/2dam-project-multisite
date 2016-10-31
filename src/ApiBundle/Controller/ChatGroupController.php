@@ -39,7 +39,7 @@ class ChatGroupController extends Controller
     }
 
     /**
-     * @Route("/admin/chatgroup", name="chatgroup_index")
+     * @Route("/user/chatgroup", name="chatgroup_index")
      */
     public function indexAction()
     {
@@ -49,7 +49,7 @@ class ChatGroupController extends Controller
 
     /**
      *
-     * @Route("/admin/chatgroup/detail/{id}", name="chatgroup_chat")
+     * @Route("/user/chatgroup/detail/{id}", name="chatgroup_chat")
      */
     public function chatgroupDetailAction($id)
     {
@@ -59,7 +59,7 @@ class ChatGroupController extends Controller
     }
 
     /**
-     * @Route("/admin/chatgroup", name="chatgroup_new")
+     * @Route("/user/chatgroup", name="chatgroup_new")
      */
     public function indexNewChatgroupAction()
     {
@@ -69,7 +69,7 @@ class ChatGroupController extends Controller
 
     /**
     *
-    * @Route("/admin/api/chatgroup/create", name="chatgroup_save")
+    * @Route("/user/api/chatgroup/create", name="chatgroup_save")
     * @Method({"POST"})
     */
    public function chatgroupNewSaveAction(Request $request)
@@ -109,7 +109,7 @@ class ChatGroupController extends Controller
 
         /**
         *
-        * @Route("/admin/api/chatgroup/delete/{id}", name="chatgroup_delete")
+        * @Route("/user/api/chatgroup/delete/{id}", name="chatgroup_delete")
         * @Method({"DELETE"})
         * @Rest\View(statusCode=204)
         */

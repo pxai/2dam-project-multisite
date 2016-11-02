@@ -3,6 +3,7 @@
 namespace ApiBundle\Service\DAO;
 
 /**
+ * Pello Altad
  * MessageDAO
  * Extends GenericDAO
  */

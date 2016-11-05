@@ -44,7 +44,8 @@ class MeetupApiController extends Controller
     public function indexApiAction()
     {
         $meetups = $this->get("api_inventory.bo.meetup")->selectAll();
-        return $meetups;
+        //return $meetups;
+        return View::create($meetups, 200);
     }
 
     /**

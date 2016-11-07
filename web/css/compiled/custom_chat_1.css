@@ -1,0 +1,66 @@
+body {
+    background-color: #A5C261;
+}
+#chatdiv, #peoplediv {
+    margin: 1em;
+}
+
+#chatdiv {
+    margin: 2em;
+    font-size: 0.9em;
+}
+
+#peoplediv {
+    font-size: 1em;
+}
+
+#bottombar {
+
+    height:5em;
+    background-color: #2b669a;
+}
+
+#bottombarlogo {
+    padding-top: 0.8em;
+    color: white;
+    font-size: 2em;
+    text-align: right;
+}
+
+#messagediv  {
+    padding: 1em;
+}
+
+#messagediv textarea {
+    width: 100%;
+}
+
+.divmessage {
+    background-color: white;
+    /*background-image: url('img/triangle.png');*/
+    box-shadow: 2px 2px 2px gray;
+    border-radius: 0.3em;
+    margin: 0.5em;
+    padding: 0.3em;
+}
+#bottombartool {
+    padding-top: 0.8em;
+    color: white;
+    font-size: 2em;
+    text-align: left;
+}
+
+.divmessage .divuser {
+    text-align: left;
+    font-weight: bold;
+}
+
+.divmessage .divdate {
+     text-align: right;
+ }
+
+div#waiting {
+    font-style: italic;
+    color: greenyellow;
+    margin: 1em;
+}

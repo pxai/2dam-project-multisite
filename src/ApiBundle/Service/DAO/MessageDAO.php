@@ -10,19 +10,37 @@ namespace ApiBundle\Service\DAO;
 class MessageDAO extends GenericDAO {
 
     /**
+ * selects only the last ten registers with bigger id
+ * @param $id
+ * @return mixed
+ */
+    public function selectLast($groupid,$total=20) {
+        $repository = $this->em->getRepository($this->entityType);
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.id > :id')
+            ->setParameter('id',$groupid)
+            ->orderBy('m.messageDate', 'ASC')
+            ->getQuery();
+
+        return $query->setMaxResults($total)->getResult();
+    }
+
+    /**
      * selects only the last ten registers with bigger id
      * @param $id
      * @return mixed
      */
-    public function selectLastTen($id) {
+    public function selectLastFrom($id,$total=20) {
         $repository = $this->em->getRepository($this->entityType);
 
         $query = $repository->createQueryBuilder('m')
             ->where('m.id > :id')
             ->setParameter('id',$id)
+            ->orderBy('m.messageDate', 'ASC')
             ->getQuery();
 
-        return $query->setMaxResults(20)->getResult();
+        return $query->setMaxResults($total)->getResult();
     }
 
     /**
@@ -30,7 +48,7 @@ class MessageDAO extends GenericDAO {
      * @param $id
      * @return mixed
      */
-    public function selectLast($id) {
+    public function selectUser($id) {
         $repository = $this->em->getRepository($this->entityType);
 
         $query = $repository->createQueryBuilder('m')

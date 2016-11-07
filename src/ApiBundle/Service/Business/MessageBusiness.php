@@ -12,8 +12,11 @@ use ApiBundle\Service\DAO\MessageDAO;
  */
 class MessageBusiness extends GenericBusiness {
 
-    public function selectLast($id) {
-        return $this->entityDAO->selectLast($id);
+    public function selectLast($id,$total=20) {
+        return $this->entityDAO->selectLast($id,$total);
     }
 
+    public function selectUser($id) {
+        return $this->entityDAO->selectUser($id);
+    }
 }

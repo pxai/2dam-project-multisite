@@ -101,6 +101,47 @@ class ItemApiController extends Controller
        return View::create($form, 400);
    }
 
+
+    /**
+     *
+     * @Route("/admin/api/form/item/create", name="api_form_item_new_save")
+     * @Method({"POST"})
+     */
+    public function itemFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(ItemType::class, new Item());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $item = $form->getData();
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+
+            $this->get("api_inventory.bo.item")->create($item);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            // set the `Location` header only when creating new resources
+            /*   if (201 === $statusCode) {
+                   $response->headers->set('Location',
+                       $this->generateUrl(
+                           'acme_demo_user_get', array('id' => $item->getId()),
+                           true // absolute
+                       )
+                   );
+               }*/
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+
         /**
         *
         * @Route("/admin/api/item/delete/{id}", name="api_item_delete")

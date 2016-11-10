@@ -101,6 +101,37 @@ class IdeaApiController extends Controller
        return View::create($form, 400);
    }
 
+    /**
+     *
+     * @Route("/admin/api/form/idea/create", name="api_form_idea_new_save")
+     * @Method({"POST"})
+     */
+    public function beatFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(IdeaType::class, new Idea());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $idea = $form->getData();
+            // $event->setIdUser(1);
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($idea, 'json'));
+
+            $this->get("api_inventory.bo.event")->create($idea);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+
         /**
         *
         * @Route("/admin/api/idea/delete/{id}", name="api_idea_delete")

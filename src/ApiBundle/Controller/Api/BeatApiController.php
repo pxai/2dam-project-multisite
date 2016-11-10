@@ -101,6 +101,39 @@ class BeatApiController extends Controller
        return View::create($form, 400);
    }
 
+
+    /**
+     *
+     * @Route("/admin/api/form/beat/create", name="api_form_beat_new_save")
+     * @Method({"POST"})
+     */
+    public function beatFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(BeatType::class, new Beat());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $beat = $form->getData();
+            $beat->setIdfrom(1);
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($beat, 'json'));
+
+            $this->get("api_inventory.bo.beat")->create($beat);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+
+
         /**
         *
         * @Route("/admin/api/beat/delete/{id}", name="api_beat_delete")

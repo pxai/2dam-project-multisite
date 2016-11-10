@@ -101,6 +101,37 @@ class ClassApiController extends Controller
        return View::create($form, 400);
    }
 
+    /**
+     *
+     * @Route("/admin/api/form/class/create", name="api_form_class_new_save")
+     * @Method({"POST"})
+     */
+    public function beatFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(ClassType::class, new AClass());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $class = $form->getData();
+           // $class->setIdUser(1);
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($class, 'json'));
+
+            $this->get("api_inventory.bo.class")->create($class);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+
         /**
         *
         * @Route("/admin/api/class/delete/{id}", name="api_class_delete")

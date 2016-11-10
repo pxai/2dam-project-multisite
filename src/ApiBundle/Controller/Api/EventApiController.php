@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+use ApiBundle\Form\Type\EventType;
 use ApiBundle\Entity\Event;
 
 class EventApiController extends Controller
@@ -100,6 +101,37 @@ class EventApiController extends Controller
        return View::create($form, 400);
    }
 
+    /**
+     *
+     * @Route("/admin/api/form/event/create", name="api_form_event_new_save")
+     * @Method({"POST"})
+     */
+    public function beatFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(EventType::class, new Event());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $event = $form->getData();
+            // $event->setIdUser(1);
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($event, 'json'));
+
+            $this->get("api_inventory.bo.event")->create($event);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+    
         /**
         *
         * @Route("/admin/api/event/delete/{id}", name="api_event_delete")

@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+use ApiBundle\Form\Type\MeetupType;
 use ApiBundle\Entity\Meetup;
 
 class MeetupApiController extends Controller
@@ -101,7 +102,39 @@ class MeetupApiController extends Controller
        return View::create($form, 400);
    }
 
-        /**
+    /**
+     *
+     * @Route("/admin/api/form/meetup/create", name="api_form_meetup_new_save")
+     * @Method({"POST"})
+     */
+    public function beatFormNewSaveAction(Request $request)
+    {
+        $statusCode = 201;
+        $this->get('logger')->info($request);
+        $form = $this->createForm(MeetupType::class, new Meetup());
+        $form->handleRequest($request);
+
+        $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
+
+        if ($form->isValid()) {
+            $meetup = $form->getData();
+            // $event->setIdUser(1);
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($meetup, 'json'));
+
+            $this->get("api_inventory.bo.meetup")->create($meetup);
+
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            return $response;
+        }
+        $this->get('logger')->info('NOT CORRECT: ' . $this->serializer->serialize($form->getErrors(), 'json'));
+        return View::create($form, 400);
+    }
+
+
+    /**
         *
         * @Route("/admin/api/meetup/delete/{id}", name="api_meetup_delete")
         * @Method({"DELETE"})

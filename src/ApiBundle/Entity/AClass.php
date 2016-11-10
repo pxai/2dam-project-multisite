@@ -45,6 +45,7 @@ class AClass extends Entity
     private $longitude;
 
     public function __construct () {
+        $this->since = new \DateTime();
         $this->latitude = 0;
         $this->longitude = 0;
     }

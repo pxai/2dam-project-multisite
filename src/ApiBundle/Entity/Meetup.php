@@ -54,6 +54,7 @@ class Meetup extends Entity
 
     public function __construct () {
         $this->since = new \DateTime();
+        $this->meetupDate = new \DateTime();
         $this->latitude = 0;
         $this->longitude = 0;
     }

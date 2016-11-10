@@ -1,7 +1,1 @@
-{
-  "message": {
-    "content": "epa",
-    "user" : 1,
-    "group": 1
-  }
-}
+{"item":{"id":1,"name":"aaaa","description":"bbbbb","status":1}}

@@ -1,6 +1,7 @@
 2DAM-Symfony3-Multisite
 =======================
-Multisite symfony3 project to host different backedns for android appps
+Multisite FOSRestBundlesymfony3 project to host different backedns for android appps
+
 
 Instalation
 ===========

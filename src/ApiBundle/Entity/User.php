@@ -36,7 +36,7 @@ class User extends Entity implements UserInterface, \Serializable
 
    /**
     * @var Roles
-     * @ORM\ManyToMany(targetEntity="Role")
+     * @ORM\ManyToMany(targetEntity="Role",fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="user_role",
      *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idrole", referencedColumnName="id", unique=true)}
@@ -46,7 +46,7 @@ class User extends Entity implements UserInterface, \Serializable
 
     /**
      * @var ChatGroups
-     * @ORM\ManyToMany(targetEntity="ChatGroup")
+     * @ORM\ManyToMany(targetEntity="ChatGroup",fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="chatgroup_user",
      *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idchatgroup", referencedColumnName="id", unique=true)}
@@ -56,7 +56,7 @@ class User extends Entity implements UserInterface, \Serializable
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="user",fetch="EXTRA_LAZY")
      */
     private $messages;
 

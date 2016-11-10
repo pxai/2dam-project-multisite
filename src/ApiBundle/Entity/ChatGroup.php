@@ -29,7 +29,7 @@ class ChatGroup extends Entity
 
     /**
      * @var users
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User",fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="chatgroup_user",
      *      joinColumns={@ORM\JoinColumn(name="idchatgroup", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id", unique=true)}

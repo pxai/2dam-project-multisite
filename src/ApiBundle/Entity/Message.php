@@ -21,14 +21,14 @@ class Message extends Entity
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages",fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="iduser", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @var ChatGroup
-     * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages",fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="idgroup", referencedColumnName="id")
      */
     private $group;

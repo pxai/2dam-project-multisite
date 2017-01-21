@@ -39,12 +39,12 @@ class TaskApiController extends Controller
     }
 
     /**
-     * @Route("/admin/api/task", name="api_task_index")
+     * @Route("/admin/api/task/{$id_frontend}", name="api_task_index")
      * @Rest\View
      */
-    public function indexApiAction()
+    public function indexApiAction($id_frontend=0)
     {
-        $tasks = $this->get("api_inventory.bo.task")->selectAll();
+        $tasks = $this->get("api_inventory.bo.task")->selectLast($id_frontend);
         return $tasks;
     }
 

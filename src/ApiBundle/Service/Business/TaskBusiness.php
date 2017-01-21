@@ -13,7 +13,7 @@ use ApiBundle\Service\DAO\TaskDAO;
 class TaskBusiness extends GenericBusiness {
     
     
-  /*      public function selectLast($id) {
+   public function selectLast($id) {
         return $this->entityDAO->selectLast($id);
-    }*/
+   }
 }

@@ -16,7 +16,8 @@ class ItemType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('id',HiddenType::class)
-            ->add('task', TextType::class);
+            ->add('task', TextType::class)
+            ->add('isRead', TextType::class);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

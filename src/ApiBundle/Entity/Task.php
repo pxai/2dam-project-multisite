@@ -17,10 +17,21 @@ class Task extends Entity
      */
     private $id;
 
+    /**
+     * @ORM\Column(name="id_frontend",type="integer")
+     */
+    private $idFrontend;
+
      /**
      * @ORM\Column(name="task",type="string", length=100)
      */
     private $task;
+
+
+    /**
+     * @ORM\Column(name="is_read",type="integer")
+     */
+    private $isRead;
 
 
     /**
@@ -70,6 +81,38 @@ class Task extends Entity
 
     public function setStatus($status) {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsRead()
+    {
+        return $this->isRead;
+    }
+
+    /**
+     * @param mixed $isRead
+     */
+    public function setIsRead($isRead)
+    {
+        $this->isRead = $isRead;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFrontend()
+    {
+        return $this->idFrontend;
+    }
+
+    /**
+     * @param mixed $idFrontend
+     */
+    public function setIdFrontend($idFrontend)
+    {
+        $this->idFrontend = $idFrontend;
     }
 
 }

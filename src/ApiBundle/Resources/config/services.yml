@@ -62,9 +62,17 @@ services:
          arguments: ['@api_inventory.dao.chatgroup']
 
     api_inventory.dao.message:
-         class: ApiBundle\Service\DAO\MessageDAO
-         arguments: ['ApiBundle:Message', '@doctrine.orm.entity_manager' ]
+        class: ApiBundle\Service\DAO\MessageDAO
+        arguments: ['ApiBundle:Message', '@doctrine.orm.entity_manager' ]
 
     api_inventory.bo.message:
-         class: ApiBundle\Service\Business\MessageBusiness
-         arguments: ['@api_inventory.dao.message']
+        class: ApiBundle\Service\Business\MessageBusiness
+        arguments: ['@api_inventory.dao.message']
+
+    api_inventory.dao.task:
+        class: ApiBundle\Service\DAO\TaskDAO
+        arguments: ['ApiBundle:Task', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.task:
+        class: ApiBundle\Service\Business\TaskBusiness
+        arguments: ['@api_inventory.dao.task']

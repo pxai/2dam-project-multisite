@@ -14,10 +14,10 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-use ApiBundle\Form\Type\ItemType;
-use ApiBundle\Entity\Item;
+use ApiBundle\Form\Type\TaskType;
+use ApiBundle\Entity\Task;
 
-class ItemApiController extends Controller
+class TaskApiController extends Controller
 {
 
         private $serializer;
@@ -39,45 +39,45 @@ class ItemApiController extends Controller
     }
 
     /**
-     * @Route("/admin/api/item", name="api_item_index")
+     * @Route("/admin/api/task", name="api_task_index")
      * @Rest\View
      */
     public function indexApiAction()
     {
-        $items = $this->get("api_inventory.bo.item")->selectAll();
-        return $items;
+        $tasks = $this->get("api_inventory.bo.task")->selectAll();
+        return $tasks;
     }
 
     /**
      *
-     * @Route("/admin/api/item/detail/{id}", name="api_item_detail")
+     * @Route("/admin/api/task/detail/{id}", name="api_task_detail")
      * @Rest\View
      */
-    public function itemDetailAction($id)
+    public function taskDetailAction($id)
     {
-        $item = $this->get("api_inventory.bo.item")->selectById($id);
-        return $item;
+        $task = $this->get("api_inventory.bo.task")->selectById($id);
+        return $task;
     }
     
     /**
     *
-    * @Route("/admin/api/item/create", name="api_item_new_save")
+    * @Route("/admin/api/task/create", name="api_task_new_save")
     * @Method({"POST"})
     */
-   public function itemNewSaveAction(Request $request)
+   public function taskNewSaveAction(Request $request)
    {
      $statusCode = 201;
         $this->get('logger')->info($request);
-     $form = $this->createForm(ItemType::class, new Item());
+     $form = $this->createForm(TaskType::class, new Task());
      $form->handleRequest($request);
 
      $this->get('logger')->info('Here we go.');
 
        if ($form->isValid()) {
-           $item = $form->getData();
-           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+           $task = $form->getData();
+           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($task, 'json'));
 
-           $this->get("api_inventory.bo.item")->create($item);
+           $this->get("api_inventory.bo.task")->create($task);
 
 
            $response = new Response();
@@ -87,7 +87,7 @@ class ItemApiController extends Controller
         /*   if (201 === $statusCode) {
                $response->headers->set('Location',
                    $this->generateUrl(
-                       'acme_demo_user_get', array('id' => $item->getId()),
+                       'acme_demo_user_get', array('id' => $task->getId()),
                        true // absolute
                    )
                );
@@ -102,23 +102,23 @@ class ItemApiController extends Controller
 
     /**
      *
-     * @Route("/admin/api/form/item/create", name="api_form_item_new_save")
+     * @Route("/admin/api/form/task/create", name="api_form_task_new_save")
      * @Method({"POST"})
      */
-    public function itemFormNewSaveAction(Request $request)
+    public function taskFormNewSaveAction(Request $request)
     {
         $statusCode = 201;
         $this->get('logger')->info($request);
-        $form = $this->createForm(ItemType::class, new Item());
+        $form = $this->createForm(TaskType::class, new Task());
         $form->handleRequest($request);
 
         $this->get('logger')->info('Here we go.' . $this->serializer->serialize($form->getData(), 'json'));
 
         if ($form->isValid()) {
-            $item = $form->getData();
-            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+            $task = $form->getData();
+            $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($task, 'json'));
 
-            $this->get("api_inventory.bo.item")->create($item);
+            $this->get("api_inventory.bo.task")->create($task);
 
 
             $response = new Response();
@@ -128,7 +128,7 @@ class ItemApiController extends Controller
             /*   if (201 === $statusCode) {
                    $response->headers->set('Location',
                        $this->generateUrl(
-                           'acme_demo_user_get', array('id' => $item->getId()),
+                           'acme_demo_user_get', array('id' => $task->getId()),
                            true // absolute
                        )
                    );
@@ -142,36 +142,36 @@ class ItemApiController extends Controller
 
         /**
         *
-        * @Route("/admin/api/item/delete/{id}", name="api_item_delete")
+        * @Route("/admin/api/task/delete/{id}", name="api_task_delete")
         * @Method({"DELETE"})
         * @Rest\View(statusCode=204)
         */
-       public function itemDeleteAction(Item $item)
+       public function taskDeleteAction(Task $task)
        {
-           $this->get("api_inventory.bo.item")->remove($item);
+           $this->get("api_inventory.bo.task")->remove($task);
        }
 
 
 /**
     *
-    * @Route("/admin/api/item/update", name="api_item_update_save")
+    * @Route("/admin/api/task/update", name="api_task_update_save")
     * @Method({"PUT"})
     * @Rest\View(statusCode=204)
     */
-   public function itemUpdateSaveAction(Request $request)
+   public function taskUpdateSaveAction(Request $request)
    {
       $statusCode = 201;
         $this->get('logger')->info($request);
-     $form = $this->createForm(ItemType::class, new Item(),array('method' => 'PUT'));
+     $form = $this->createForm(TaskType::class, new Task(),array('method' => 'PUT'));
      $form->handleRequest($request);
 
      $this->get('logger')->info('Here we go with update.');
 
        if ($form->isValid()) {
-           $item = $form->getData();
-           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($item, 'json'));
+           $task = $form->getData();
+           $this->get('logger')->info('ITS CORRECT: ' . $this->serializer->serialize($task, 'json'));
 
-           $this->get("api_inventory.bo.item")->update($item);
+           $this->get("api_inventory.bo.task")->update($task);
 
 
            $response = new Response();
@@ -188,24 +188,24 @@ class ItemApiController extends Controller
 //
 //     /**
 //     *
-//     * @Route("/admin/api/item/update", name="api_item_update_save")
+//     * @Route("/admin/api/task/update", name="api_task_update_save")
 //     * Method({"PUT"})
 //     */
-//    public function itemUpdateSaveAction(Item $item)
+//    public function taskUpdateSaveAction(Task $task)
 //    {
-//       $form = $this->createForm(ItemType::class, new Item());
+//       $form = $this->createForm(TaskType::class, new Task());
 //       $form->handleRequest($request);
 //
 //        if ($form->isValid()) {
 //
-//            $item = $form->getData();
+//            $task = $form->getData();
 //
-//            $this->get("api_inventory.bo.item")->update($item);
-//            //$response =  $this->forward('apiInventoryBundle:Item:detail.html.twig', array('item' => $item));
+//            $this->get("api_inventory.bo.task")->update($task);
+//            //$response =  $this->forward('apiInventoryBundle:Task:detail.html.twig', array('task' => $task));
 //            return $this->indexAction();
 //        } else {
 //
-//            $response = $this->render('apiInventoryBundle:Item:update.html.twig', array('form'=> $form->createView()));
+//            $response = $this->render('apiInventoryBundle:Task:update.html.twig', array('form'=> $form->createView()));
 //        }
 //        return $response;
 //
@@ -213,12 +213,12 @@ class ItemApiController extends Controller
 //
 //    /**
 //     *
-//     * @Route("/admin/api/item/delete/{id}", name="api_item_delete")
+//     * @Route("/admin/api/task/delete/{id}", name="api_task_delete")
 //     */
-//    public function itemDeleteAction($id)
+//    public function taskDeleteAction($id)
 //    {
-//        $item = $this->get("api_inventory.bo.item")->selectById($id);
-//        return $this->render('apiInventoryBundle:Item:delete.html.twig',array("item"=>$item));
+//        $task = $this->get("api_inventory.bo.task")->selectById($id);
+//        return $this->render('apiInventoryBundle:Task:delete.html.twig',array("task"=>$task));
 //    }
 //
 //

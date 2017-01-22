@@ -39,7 +39,7 @@ class TaskApiController extends Controller
     }
 
     /**
-     * @Route("/admin/api/task/{$id_frontend}", name="api_task_index")
+     * @Route("/admin/api/task/{id_frontend}", name="api_task_index")
      * @Rest\View
      */
     public function indexApiAction($id_frontend=0)

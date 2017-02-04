@@ -37,7 +37,7 @@ class TaskApiController extends Controller
       $response->headers->set('Access-Control-Allow-Origin', '*');
       return $response;
     }
-
+    
     /**
      * @Route("/admin/api/task/{id_frontend}", name="api_task_index")
      * @Rest\View

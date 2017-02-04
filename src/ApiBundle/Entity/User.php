@@ -18,6 +18,11 @@ class User extends Entity implements UserInterface, \Serializable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\Column(name="oauthid",type="string", length=100)
+     */
+    private $oauthid;
     
      /**
      * @ORM\Column(name="username",type="string", length=50)
@@ -171,4 +176,22 @@ class User extends Entity implements UserInterface, \Serializable
     {
         $this->chatGroups = $chatGroups;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOauthid()
+    {
+        return $this->oauthid;
+    }
+
+    /**
+     * @param mixed $oauthid
+     */
+    public function setOauthid($oauthid)
+    {
+        $this->oauthid = $oauthid;
+    }
+
+
 }

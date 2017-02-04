@@ -76,3 +76,11 @@ services:
     api_inventory.bo.task:
         class: ApiBundle\Service\Business\TaskBusiness
         arguments: ['@api_inventory.dao.task']
+
+    api_inventory.dao.article:
+        class: ApiBundle\Service\DAO\ArticleDAO
+        arguments: ['ApiBundle:Article', '@doctrine.orm.entity_manager' ]
+
+    api_inventory.bo.article:
+        class: ApiBundle\Service\Business\ArticleBusiness
+        arguments: ['@api_inventory.dao.article']

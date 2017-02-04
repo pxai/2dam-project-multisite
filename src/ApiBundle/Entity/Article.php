@@ -22,7 +22,7 @@ class Article extends Entity
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="messages",fetch="EXTRA_LAZY")
-     * @ORM\JoinColumn(name="iduser", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idseller", referencedColumnName="id")
      */
     private $user;
 

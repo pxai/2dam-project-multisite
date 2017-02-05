@@ -4,7 +4,7 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ApiBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\ArticleRepository")
@@ -21,20 +21,18 @@ class Article extends Entity
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages",fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles",fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="idseller", referencedColumnName="id")
      */
     private $user;
 
-
-  
      /**
      * @ORM\Column(name="name",type="string", length=100)
      */
     private $name;
 
     /**
-     * @ORM\Column(name="description",type="string", length=100)
+     * @ORM\Column(name="description",type="string", length=255)
      */
     private $description;
 
@@ -60,6 +58,7 @@ class Article extends Entity
 
 
     public function __construct () {
+        //$this->user = new User();
         $this->publishDate = new \DateTime();
         $this->latitude = 0;
         $this->longitude = 0;
@@ -192,11 +191,6 @@ class Article extends Entity
     {
         $this->longitude = $longitude;
     }
-
-
-
-
-
 
  
 }

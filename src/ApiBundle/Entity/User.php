@@ -20,9 +20,9 @@ class User extends Entity implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(name="oauthid",type="string", length=100)
+     * @ORM\Column(name="idoauth",type="string", length=100)
      */
-    private $oauthid;
+    private $idoauth;
     
      /**
      * @ORM\Column(name="username",type="string", length=50)
@@ -65,12 +65,18 @@ class User extends Entity implements UserInterface, \Serializable
      */
     private $messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="user",fetch="EXTRA_LAZY")
+     */
+    private $articles;
+
     public function __construct () {
         $this->isActive = true;
         $this->since = time();
         $this->roles = array();
         $this->chatGroups = array();
         $this->messages = array();
+        $this->articles = array();
     }
 
     public function randPassword( $length = 8, $chars = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789' ) {
@@ -180,18 +186,51 @@ class User extends Entity implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getOauthid()
+    public function getIdoauth()
     {
-        return $this->oauthid;
+        return $this->idoauth;
     }
 
     /**
-     * @param mixed $oauthid
+     * @param mixed $idoauth
      */
-    public function setOauthid($oauthid)
+    public function setIdoauth($idoauth)
     {
-        $this->oauthid = $oauthid;
+        $this->idoauth = $idoauth;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @param mixed $messages
+     */
+    public function setMessages($messages)
+    {
+        $this->messages = $messages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
 
 
 }

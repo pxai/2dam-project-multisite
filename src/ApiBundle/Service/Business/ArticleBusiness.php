@@ -10,7 +10,7 @@ use ApiBundle\Service\DAO\ArticleDAO;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class ArticleeBusiness extends GenericBusiness {
+class ArticleBusiness extends GenericBusiness {
 
     public function selectLast($id,$total=20) {
         return $this->entityDAO->selectLast($id,$total);

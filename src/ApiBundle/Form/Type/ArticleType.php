@@ -18,7 +18,7 @@ class ArticleType extends AbstractType {
         $builder
             ->add('id',HiddenType::class)
             ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextType::class)
             ->add('latitude', TextType::class)
             ->add('longitude', TextType::class)
             ->add('user', EntityType::class, array (
@@ -35,6 +35,6 @@ class ArticleType extends AbstractType {
     }
 
     public function getName() {
-        return 'Article';
+        return 'article';
     }
 }

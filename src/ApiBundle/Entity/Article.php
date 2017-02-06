@@ -5,6 +5,7 @@ namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiBundle\Entity\User;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\Entity(repositoryClass="ApiBundle\EntityRepository\ArticleRepository")
@@ -23,6 +24,7 @@ class Article extends Entity
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="articles",fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="idseller", referencedColumnName="id")
+     * @MaxDepth(1)
      */
     private $user;
 
@@ -192,5 +194,4 @@ class Article extends Entity
         $this->longitude = $longitude;
     }
 
- 
 }

@@ -190,7 +190,8 @@ class ArticleApiController extends Controller
 //    public function articleDeleteAction($id)
 //    {
 //        $article = $this->get("api_inventory.bo.article")->selectById($id);
-//        return $this->render('apiInventoryBundle:Article:delete.html.twig',array("article"=>$article));
+//        return $this->render('apiInventoryBundle:Article:delete.html.twig',array("article"=>$article
+//));
 //    }
 //
 //

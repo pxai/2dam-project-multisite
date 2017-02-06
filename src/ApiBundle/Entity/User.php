@@ -4,6 +4,7 @@ namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 
 /**
@@ -46,6 +47,7 @@ class User extends Entity implements UserInterface, \Serializable
      *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idrole", referencedColumnName="id", unique=true)}
      *      )
+     * @MaxDepth(1)
      */
     private $roles;
 
@@ -56,17 +58,20 @@ class User extends Entity implements UserInterface, \Serializable
      *      joinColumns={@ORM\JoinColumn(name="iduser", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="idchatgroup", referencedColumnName="id", unique=true)}
      *      )
+     * @MaxDepth(1)
      */
     private $chatGroups;
 
 
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="user",fetch="EXTRA_LAZY")
+     * @MaxDepth(1)
      */
     private $messages;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="user",fetch="EXTRA_LAZY")
+     * ORM\OneToMany(targetEntity="Article", mappedBy="user",fetch="EXTRA_LAZY")
+     * @MaxDepth(1)
      */
     private $articles;
 
